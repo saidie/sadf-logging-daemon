@@ -25,6 +25,7 @@ module Sadfld
       fan_speed: [:device, :number],
       temperature: [:device, :number],
       voltage_input: [:device, :number],
+      filesystems: [:filesystem],
     }
 
     def parse!(stat)
