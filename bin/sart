@@ -1,0 +1,18 @@
+#! /usr/bin/env ruby
+
+require_relative '../lib/sadfld'
+
+stat = Sadfld.read_stat
+if stat.blank?
+  fail "failed to read statistics"
+end
+
+version = stat[:sysstat][:sysdata_version]
+parser = Sadfld::ParserFactory.create(version)
+if parser.blank?
+  fail "unsupported version: #{version}"
+end
+
+parser.parse!(stat).each do |value|
+  puts MultiJson.dump(value)
+end
