@@ -1,0 +1,7 @@
+#!/bin/sh -eu
+
+tf=`mktemp`
+
+sar -o "$tf" -A 1 1 > /dev/null
+
+sadf -j -- -A "$tf"
