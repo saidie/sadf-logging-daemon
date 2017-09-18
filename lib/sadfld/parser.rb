@@ -79,6 +79,7 @@ module Sadfld
 
         # extract tags
         KEY_MAP.each do |type, keys|
+          next unless res[type]
           res[type].each do |value|
             value[:tags] = value.extract!(*keys)
           end
